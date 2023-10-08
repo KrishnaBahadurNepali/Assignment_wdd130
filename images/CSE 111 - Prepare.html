@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)https://byui-cse.github.io/cse111-course/lesson11/prepare.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSE 111 - Prepare</title>
+    <script src="./CSE 111 - Prepare_files/main.js.download"></script>
+    <script src="./CSE 111 - Prepare_files/highlight.min.js.download"></script>
+    <link rel="canonical" href="https://byui-cse.github.io/cse111-course/lesson11/prepare.html">
+    <link rel="icon" type="image/png" href="https://byui-cse.github.io/cse111-course/site/icons/logo.png">
+    <link rel="stylesheet" type="text/css" href="./CSE 111 - Prepare_files/style.css">
+    <link rel="stylesheet" type="text/css" href="./CSE 111 - Prepare_files/vscode.css">
+    <link rel="prev" type="text/html" href="https://byui-cse.github.io/cse111-course/lesson10/prove.html">
+    <link rel="next" type="text/html" href="https://byui-cse.github.io/cse111-course/lesson11/check.html">
+</head>
+
+<body class="light">
+<header><a class="byuiLogo" title="BYU-Idaho Website" href="https://www.byui.edu/"></a><h2><a title="CSE 111 Content" href="https://byui-cse.github.io/cse111-course/index.html">CSE 111</a> | <span>Programming with Functions</span></h2><img class="menuIcon" title="Click to open the navigation menu" alt="Click to open the navigation menu" src="./CSE 111 - Prepare_files/bars.svg"></header><nav class="menu closed"><ul><li class="light" title="Change to light mode"><img alt="undefined" src="./CSE 111 - Prepare_files/sun.svg"> Light Mode</li><li class="dark" title="Change to dark mode"><img alt="undefined" src="./CSE 111 - Prepare_files/moon.svg"> Dark Mode</li><li class="first" title="View list of contents for CSE 111"><a href="https://byui-cse.github.io/cse111-course/index.html"><img alt="undefined" src="./CSE 111 - Prepare_files/list.svg"> Contents</a></li><li title="View previous document"><a href="https://byui-cse.github.io/cse111-course/lesson10/prove.html"><img alt="undefined" src="./CSE 111 - Prepare_files/arrow-left.svg"> Previous Document</a></li><li title="View next document"><a href="https://byui-cse.github.io/cse111-course/lesson11/check.html"><img alt="undefined" src="./CSE 111 - Prepare_files/arrow-right.svg"> Next Document</a></li><li class="first" title="Search the CSE 111 content"><a href="https://byui-cse.github.io/cse111-course/index.html#search"><img alt="undefined" src="./CSE 111 - Prepare_files/magnify-glass.svg"> Search</a></li><li title="Get help for CSE 111"><a href="https://byui-cse.github.io/cse111-course/overview/help.html"><img alt="undefined" src="./CSE 111 - Prepare_files/question.svg"> Help</a></li><li class="first" title="Download a PDF that contains
+all CSE 111 HTML content"><a download="" href="https://byui-cse.github.io/cse111-course/combined/cse111_content.pdf"><img alt="undefined" src="./CSE 111 - Prepare_files/file-pdf.svg"> .pdf File</a></li><li title="Download a zip file that
+contains all CSE 111 content"><a download="" href="https://byui-cse.github.io/cse111-course/combined/cse111_content.zip"><img alt="undefined" src="./CSE 111 - Prepare_files/file-zip.svg"> .zip File</a></li></ul></nav><article>
+    <h1>11 Prepare: Functional Programming</h1>
+    <p>A <dfn>paradigm</dfn> is a way of thinking or a way of perceiving
+    the world. There are at least four main paradigms for programming a
+    computer: procedural, declarative, functional, and object-oriented.
+    During previous lessons in CSE&nbsp;110 and&nbsp;111, you used
+    procedural programming. During this lesson, you will be introduced
+    to functional programming.</p>
+
+    <p><dfn>Procedural programming</dfn> is a programming paradigm that
+    focuses on the process or the steps to accomplish a task. This is
+    the type of programming that you did in CSE&nbsp;110 and in previous
+    lessons of CSE&nbsp;111.</p>
+
+    <p><dfn>Declarative programming</dfn> is a programming paradigm that
+    does <em>not</em> focus on the process or steps to accomplish a
+    task. Instead, with declarative programming, a programmer focuses on
+    what she wants from the computer, or in other words, she focuses on
+    the desired results. The SQL programming language is a good example
+    of a declarative language. If you have ever written SQL code, then
+    you have used declarative programming. When writing SQL code, a
+    programmer writes code to tell the computer what she wants in the
+    results but not the steps the computer must follow to get those
+    results.</p>
+
+    <p><dfn>Functional programming</dfn> is a programming paradigm that
+    focuses on functions and avoids shared state, mutating state, and
+    side effects. There are many techniques and concepts that are part
+    of functional programming. However, in this lesson we will focus on
+    just three, namely:</p>
+    <ol>
+        <li><div>We can pass a function into another function.</div></li>
+        <li><div>A nested function is a function defined inside another
+        function.</div></li>
+        <li><div>A lambda function is a small anonymous function.</div></li>
+    </ol>
+
+    <h2 id="concepts">Concepts<span class="copy" title="Copy URL to the clipboard">¶</span></h2>
+    <p>Here are the functional programming concepts that you should
+    learn during this lesson.</p>
+
+    <h3 id="pass_func">Passing a Function into another Function<span class="copy" title="Copy URL to the clipboard">¶</span></h3>
+    <p>The Python programming language allows a programmer to pass a
+    function as an argument into another function. A function that
+    accepts other functions in its parameters is known as a
+    <dfn>higher-order function</dfn>. Higher-order functions are often
+    used to process the elements in a list. Before seeing an example of
+    using a higher-order function to process a list, first consider the
+    program in example&nbsp;1 that doesn’t use a higher-order function
+    but instead uses a <code>for</code> loop to convert a list of
+    temperatures from Fahrenheit to Celsius.</p>
+
+<div class="pre" id="ex1"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 1</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    fahr_temps = [<span class="hljs-number">72</span>, <span class="hljs-number">65</span>, <span class="hljs-number">71</span>, <span class="hljs-number">75</span>, <span class="hljs-number">82</span>, <span class="hljs-number">87</span>, <span class="hljs-number">68</span>]
+
+    <span class="hljs-comment"># Print the Fahrenheit temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Fahrenheit: <span class="hljs-subst">{fahr_temps}</span>"</span>)
+
+    <span class="hljs-comment"># Convert each Fahrenheit temperature to Celsius and store</span>
+    <span class="hljs-comment"># the Celsius temperatures in a list named cels_temps.</span>
+    cels_temps = []
+    <em><span class="hljs-keyword">for</span> fahr <span class="hljs-keyword">in</span> fahr_temps:
+        cels = cels_from_fahr(fahr)
+        cels_temps.append(cels)</em>
+
+    <span class="hljs-comment"># Print the Celsius temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Celsius: <span class="hljs-subst">{cels_temps}</span>"</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cels_from_fahr</span>(<span class="hljs-params">fahr</span>):</span>
+    <span class="hljs-string">"""Convert a Fahrenheit temperature to
+    Celsius and return the Celsius temperature.
+    """</span>
+    cels = (fahr - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">round</span>(cels, <span class="hljs-number">1</span>)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex1" title="Terminal Window" style="width: 664.578px;">&gt; python example_1.py
+Fahrenheit: [72, 65, 71, 75, 82, 87, 68]
+Celsius: [22.2, 18.3, 21.7, 23.9, 27.8, 30.6, 20.0]</pre>
+
+    <p>At <span class="cross" data-ref="ex1" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">lines&nbsp;12–14</span>
+    in example&nbsp;1, there is a <code>for</code> loop that converts
+    each Fahrenheit temperature to Celsius and then appends the Celsius
+    temperature onto a new list. Writing a <code>for</code> loop like
+    this is the traditional way to process all the elements in a list
+    and doesn’t use higher-order functions.</p>
+
+    <p>Python includes a built-in higher-order function named
+    <code>map</code> that will process all the elements in a list and
+    return a new list that contains the results. The
+    <a href="https://docs.python.org/3/library/functions.html#map"><code>map</code> function</a>
+    accepts a function and a list as arguments and contains a loop
+    inside it, so that when a programmer calls the <code>map</code>
+    function, he doesn’t need to write a loop. The <code>map</code>
+    function is a higher-order function because it accepts a function as
+    an argument. Consider the program in example&nbsp;2 that produces
+    the same results as example&nbsp;1.</p>
+
+<div class="pre" id="ex2"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 2</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    fahr_temps = [<span class="hljs-number">72</span>, <span class="hljs-number">65</span>, <span class="hljs-number">71</span>, <span class="hljs-number">75</span>, <span class="hljs-number">82</span>, <span class="hljs-number">87</span>, <span class="hljs-number">68</span>]
+
+    <span class="hljs-comment"># Print the Fahrenheit temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Fahrenheit: <span class="hljs-subst">{fahr_temps}</span>"</span>)
+
+    <span class="hljs-comment"># Convert each Fahrenheit temperature to Celsius and store</span>
+    <span class="hljs-comment"># the Celsius temperatures in a list named cels_temps.</span>
+    cels_temps = <span class="hljs-built_in">list</span>(<em><span class="hljs-built_in">map</span>(cels_from_fahr, fahr_temps)</em>)
+
+    <span class="hljs-comment"># Print the Celsius temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Celsius: <span class="hljs-subst">{cels_temps}</span>"</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cels_from_fahr</span>(<span class="hljs-params">fahr</span>):</span>
+    <span class="hljs-string">"""Convert a Fahrenheit temperature to
+    Celsius and return the Celsius temperature.
+    """</span>
+    cels = (fahr - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">round</span>(cels, <span class="hljs-number">1</span>)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex2" title="Terminal Window" style="width: 664.578px;">&gt; python example_2.py
+Fahrenheit: [72, 65, 71, 75, 82, 87, 68]
+Celsius: [22.2, 18.3, 21.7, 23.9, 27.8, 30.6, 20.0]</pre>
+
+    <p>Notice that example&nbsp;2, doesn’t contain a <code>for</code>
+    loop. Instead, at <span class="cross" data-ref="ex2" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;11</span>,
+    it contains a call to the <code>map</code> function. Remember that
+    the <code>map</code> function has a loop inside it, so that the
+    programmer who calls <code>map</code>, doesn’t have to write the
+    loop. Notice also at <span class="cross" data-ref="ex2" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;11</span>
+    that the first argument to the <code>map</code> function is the name
+    of the <code>cels_from_fahr</code> function. In other words, at
+    line&nbsp;11, we are passing the <code>cels_from_fahr</code>
+    function into the <code>map</code> function, so that
+    <code>map</code> will call <code>cels_from_fahr</code> for each
+    element in the <var>fahr_temps</var> list.</p>
+
+    <p>The <code>map</code> function is just one example of a
+    higher-order function. Python also includes the built-in
+    higher-order
+    <a href="https://docs.python.org/3/library/functions.html#sorted"><code>sorted</code></a>
+    and
+    <a href="https://docs.python.org/3/library/functions.html#filter"><code>filter</code></a>
+    functions and several higher-order functions in the
+    <a href="https://docs.python.org/3/library/functools.html"><code>functools</code> module</a>.</p>
+
+    <h3 id="nested_func">Nested Functions<span class="copy" title="Copy URL to the clipboard">¶</span></h3>
+    <p>The Python programming language allows a programmer to define
+    nested functions. A <dfn>nested function</dfn> is a function that is
+    defined inside another function and is useful when we wish to split
+    a large function into smaller functions and the smaller functions
+    will be called by the containing function only. The program in
+    example&nbsp;3 produces the same results as examples&nbsp;1
+    and&nbsp;2, but it uses a nested function. Notice in example&nbsp;3
+    at <span class="cross" data-ref="ex3" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">lines&nbsp;5–10</span>
+    that the <code>cels_from_fahr</code> function is nested inside the
+    <code>main</code> function.</p>
+
+<div class="pre" id="ex3"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span class="">5</span>
+<span class="">6</span>
+<span class="">7</span>
+<span class="">8</span>
+<span class="">9</span>
+<span class="">10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 3</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+
+    <em><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cels_from_fahr</span>(<span class="hljs-params">fahr</span>):</span>
+        <span class="hljs-string">"""Convert a Fahrenheit temperature to
+        Celsius and return the Celsius temperature.
+        """</span>
+        cels = (fahr - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">round</span>(cels, <span class="hljs-number">1</span>)</em>
+
+    fahr_temps = [<span class="hljs-number">72</span>, <span class="hljs-number">65</span>, <span class="hljs-number">71</span>, <span class="hljs-number">75</span>, <span class="hljs-number">82</span>, <span class="hljs-number">87</span>, <span class="hljs-number">68</span>]
+
+    <span class="hljs-comment"># Print the Fahrenheit temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Fahrenheit: <span class="hljs-subst">{fahr_temps}</span>"</span>)
+
+    <span class="hljs-comment"># Convert each Fahrenheit temperature to Celsius and store</span>
+    <span class="hljs-comment"># the Celsius temperatures in a list named cels_temps.</span>
+    cels_temps = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(cels_from_fahr, fahr_temps))
+
+    <span class="hljs-comment"># Print the Celsius temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Celsius: <span class="hljs-subst">{cels_temps}</span>"</span>)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex3" title="Terminal Window" style="width: 664.578px;">&gt; python example_3.py
+Fahrenheit: [72, 65, 71, 75, 82, 87, 68]
+Celsius: [22.2, 18.3, 21.7, 23.9, 27.8, 30.6, 20.0]</pre>
+
+    <h3 id="lambda_func">Lambda Functions<span class="copy" title="Copy URL to the clipboard">¶</span></h3>
+    <p id="lambda">A Python <dfn>lambda function</dfn> is a small
+    anonymous function, meaning a small function without a name. A
+    lambda function is always a small function because the Python
+    language restricts a lambda function to just one expression.
+    Consider the program in example&nbsp;4 which is yet another example
+    program that converts Fahrenheit temperatures to Celsius. Notice the
+    lambda function at <span class="cross" data-ref="ex4" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;12</span>
+    of example&nbsp;4. It takes one parameter named <var>fahr</var> and
+    computes and returns the corresponding Celsius temperature. At
+    <span class="cross" data-ref="ex4" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;16</span>, the lambda
+    function is passed into the <code>map</code> function.</p>
+
+<div class="pre" id="ex4"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 4</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    fahr_temps = [<span class="hljs-number">72</span>, <span class="hljs-number">65</span>, <span class="hljs-number">71</span>, <span class="hljs-number">75</span>, <span class="hljs-number">82</span>, <span class="hljs-number">87</span>, <span class="hljs-number">68</span>]
+
+    <span class="hljs-comment"># Print the Fahrenheit temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Fahrenheit: <span class="hljs-subst">{fahr_temps}</span>"</span>)
+
+    <span class="hljs-comment"># Define a lambda function that converts</span>
+    <span class="hljs-comment"># a Fahrenheit temperature to Celsius and</span>
+    <span class="hljs-comment"># returns the Celsius temperature.</span>
+    cels_from_fahr = <em><span class="hljs-keyword">lambda</span> fahr: <span class="hljs-built_in">round</span>((fahr - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span>, <span class="hljs-number">1</span>)</em>
+
+    <span class="hljs-comment"># Convert each Fahrenheit temperature to Celsius and store</span>
+    <span class="hljs-comment"># the Celsius temperatures in a list named cels_temps.</span>
+    cels_temps = <span class="hljs-built_in">list</span>(<em><span class="hljs-built_in">map</span>(cels_from_fahr, fahr_temps)</em>)
+
+    <span class="hljs-comment"># Print the Celsius temperatures.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Celsius: <span class="hljs-subst">{cels_temps}</span>"</span>)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex4" title="Terminal Window" style="width: 674.656px;">&gt; python example_4.py
+Fahrenheit: [72, 65, 71, 75, 82, 87, 68]
+Celsius: [22.2, 18.3, 21.7, 23.9, 27.8, 30.6, 20.0]</pre>
+
+    <p>Some students are confused by the statement that a lambda
+    function is an anonymous function (a function without a name).
+    Looking at the lambda function in example&nbsp;4 at
+    <span class="cross" data-ref="ex4" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;12</span>, it appears
+    that the lambda function is named <var>cels_from_fahr</var>.
+    However, <var>cels_from_fahr</var> is the name of a variable, not
+    the name of the lambda function. The lambda function has no name.
+    This distinction may seem trivial until we see an example of an
+    inline lambda function. Notice in the next example that the lambda
+    function is defined inside the parentheses for the call to the
+    <code>map</code> function.</p>
+
+<div class="pre"><pre class="python hljs">    <span class="hljs-comment"># Convert each Fahrenheit temperature to Celsius and store</span>
+    <span class="hljs-comment"># the Celsius temperatures in a list named cels_temps.</span>
+    cels_temps = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(
+            <em><span class="hljs-keyword">lambda</span> fahr: <span class="hljs-built_in">round</span>((fahr - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span>, <span class="hljs-number">1</span>)</em>,
+            fahr_temps))
+</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+        <p>To write a lambda function write code that follows this
+        template:</p>
+
+<div class="pre"><pre class="python hljs">    <span class="hljs-keyword">lambda</span> <var>param1</var>, <var>param2</var>, … <var>paramN</var>: <var>expression</var></pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+    <p>As shown in the template, type the keyword <code>lambda</code>,
+    then parameters separated by commas, then a colon (:), and finally
+    an expression that performs arithmetic, modifies a string, or
+    computes something else.</p>
+
+    <p>In Python, every lambda function can be written as a regular
+    Python function. For example, the lambda function in example&nbsp;4
+    can be rewritten as the <code>cels_from_fahr</code> function in
+    examples&nbsp;1,&nbsp;2, and&nbsp;3.</p>
+
+    <h2 id="map_filter">Example - Map and Filter<span class="copy" title="Copy URL to the clipboard">¶</span></h2>
+    <p>The <a href="https://byui-cse.github.io/cse111-course/lesson09/check.html">checkpoint</a> for
+    lesson&nbsp;9 required you to write a program that replaced all the
+    occurrences of "AB" in a list with the name "Alberta" and then
+    counted how many times the name "Alberta" appeared in the list.</p>
+
+    <p>Example&nbsp;5 contains a program that uses the <code>map</code>
+    and <code>filter</code> functions to complete the requirements of
+    <a href="https://byui-cse.github.io/cse111-course/lesson09/check.html">checkpoint&nbsp;9</a>. The example
+    program works by doing the following:</p>
+    <ol>
+        <li><div>Calling the <code>map</code> function at
+        <span class="cross" data-ref="ex5" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;42</span> to
+        convert all elements that are "AB" to "Alberta."</div></li>
+
+        <li><div>Calling the <code>filter</code> function at
+        <span class="cross" data-ref="ex5" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;55</span> to
+        remove all elements that are not "Alberta."</div></li>
+
+        <li><div>Calling the <code>len</code> function at
+        <span class="cross" data-ref="ex5" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;63</span> to count
+        the number of elements that remain in the filtered
+        list.</div></li>
+    </ol>
+
+<div class="pre" id="ex5"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+<span>58</span>
+<span>59</span>
+<span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+<span>64</span>
+<span>65</span>
+<span>66</span>
+<span>67</span>
+<span>68</span>
+<span>69</span>
+<span>70</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 5</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-comment"># Create a list that contains the names of Canadian provinces.</span>
+    provinces_list = [
+        <span class="hljs-string">"Alberta"</span>, <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"Prince Edward Island"</span>, <span class="hljs-string">"Ontario"</span>,
+        <span class="hljs-string">"Quebec"</span>, <span class="hljs-string">"Saskatchewan"</span>, <span class="hljs-string">"AB"</span>, <span class="hljs-string">"Nova Scotia"</span>, <span class="hljs-string">"Alberta"</span>,
+        <span class="hljs-string">"Northwest Territories"</span>, <span class="hljs-string">"Saskatchewan"</span>, <span class="hljs-string">"Nunavut"</span>,
+        <span class="hljs-string">"Nova Scotia"</span>, <span class="hljs-string">"Prince Edward Island"</span>, <span class="hljs-string">"Alberta"</span>,
+        <span class="hljs-string">"Nova Scotia"</span>, <span class="hljs-string">"Prince Edward Island"</span>, <span class="hljs-string">"Saskatchewan"</span>,
+        <span class="hljs-string">"Nova Scotia"</span>, <span class="hljs-string">"Newfoundland and Labrador"</span>, <span class="hljs-string">"Ontario"</span>,
+        <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"British Columbia"</span>, <span class="hljs-string">"Ontario"</span>,
+        <span class="hljs-string">"Nova Scotia"</span>, <span class="hljs-string">"Prince Edward Island"</span>, <span class="hljs-string">"Saskatchewan"</span>,
+        <span class="hljs-string">"Newfoundland and Labrador"</span>, <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"Ontario"</span>,
+        <span class="hljs-string">"Manitoba"</span>, <span class="hljs-string">"British Columbia"</span>, <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"Alberta"</span>,
+        <span class="hljs-string">"Saskatchewan"</span>, <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"Manitoba"</span>, <span class="hljs-string">"Ontario"</span>,
+        <span class="hljs-string">"New Brunswick"</span>, <span class="hljs-string">"Yukon"</span>, <span class="hljs-string">"British Columbia"</span>, <span class="hljs-string">"Yukon"</span>,
+        <span class="hljs-string">"Newfoundland and Labrador"</span>, <span class="hljs-string">"Manitoba"</span>, <span class="hljs-string">"Ontario"</span>,
+        <span class="hljs-string">"Yukon"</span>, <span class="hljs-string">"British Columbia"</span>, <span class="hljs-string">"Yukon"</span>, <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"AB"</span>,
+        <span class="hljs-string">"Newfoundland and Labrador"</span>, <span class="hljs-string">"Nova Scotia"</span>, <span class="hljs-string">"Yukon"</span>,
+        <span class="hljs-string">"Northwest Territories"</span>, <span class="hljs-string">"Nunavut"</span>, <span class="hljs-string">"Yukon"</span>, <span class="hljs-string">"Nunavut"</span>,
+        <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"British Columbia"</span>, <span class="hljs-string">"AB"</span>, <span class="hljs-string">"Saskatchewan"</span>,
+        <span class="hljs-string">"Prince Edward Island"</span>, <span class="hljs-string">"Saskatchewan"</span>,
+        <span class="hljs-string">"Prince Edward Island"</span>, <span class="hljs-string">"Alberta"</span>, <span class="hljs-string">"Ontario"</span>, <span class="hljs-string">"Alberta"</span>,
+        <span class="hljs-string">"Manitoba"</span>, <span class="hljs-string">"AB"</span>, <span class="hljs-string">"British Columbia"</span>, <span class="hljs-string">"Alberta"</span>
+    ]
+
+    <span class="hljs-comment"># As a debugging aid, print the entire list.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Original list of provinces:"</span>)
+    <span class="hljs-built_in">print</span>(provinces_list)
+    <span class="hljs-built_in">print</span>()
+
+    <span class="hljs-comment"># Define a nested function that converts AB to Alberta.</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">alberta_from_ab</span>(<span class="hljs-params">province_name</span>):</span>
+        <span class="hljs-keyword">if</span> province_name == <span class="hljs-string">"AB"</span>:
+            province_name = <span class="hljs-string">"Alberta"</span>
+        <span class="hljs-keyword">return</span> province_name
+
+    <span class="hljs-comment"># Replace all occurrences of "AB" with "Alberta" by</span>
+    <span class="hljs-comment"># calling the map function and passing the ablerta_from_ab</span>
+    <span class="hljs-comment"># function and provinces_list into the map function.</span>
+    new_list = <span class="hljs-built_in">list</span>(<em><span class="hljs-built_in">map</span>(alberta_from_ab, provinces_list)</em>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"List of provinces after AB was changed to Alberta:"</span>)
+    <span class="hljs-built_in">print</span>(new_list)
+    <span class="hljs-built_in">print</span>()
+
+    <span class="hljs-comment"># Define a nested function that returns True if</span>
+    <span class="hljs-comment"># province_name is Alberta and returns False otherwise.</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_alberta</span>(<span class="hljs-params">province_name</span>):</span>
+        <span class="hljs-keyword">return</span> province_name == <span class="hljs-string">"Alberta"</span>
+
+    <span class="hljs-comment"># Filter the new list to only those provinces that</span>
+    <span class="hljs-comment"># are "Alberta" by calling the filter function and</span>
+    <span class="hljs-comment"># passing the is_alberta function and new_list.</span>
+    filtered_list = <span class="hljs-built_in">list</span>(<em><span class="hljs-built_in">filter</span>(is_alberta, new_list)</em>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"List filtered to Alberta only:"</span>)
+    <span class="hljs-built_in">print</span>(filtered_list)
+    <span class="hljs-built_in">print</span>()
+
+    <span class="hljs-comment"># Because all the elements in filtered_list are</span>
+    <span class="hljs-comment"># "Alberta", we can count how many elements are</span>
+    <span class="hljs-comment"># "Alberta" by simply calling the len function.</span>
+    count = <em><span class="hljs-built_in">len</span>(filtered_list)</em>
+
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Alberta occurs <span class="hljs-subst">{count}</span> times in the modified list."</span>)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex5" title="Terminal Window" style="width: 704.688px;">&gt; python example_5.py
+
+Original list of provinces:
+['Alberta', 'Ontario', 'Prince Edward Island', 'Ontario', 'Quebec',
+'Saskatchewan', 'AB', 'Nova Scotia', 'Alberta', 'Northwest
+Territories', 'Saskatchewan', 'Nunavut', 'Nova Scotia', 'Prince Edward
+Island', 'Alberta', 'Nova Scotia', 'Prince Edward Island',
+'Saskatchewan', 'Nova Scotia', 'Newfoundland and Labrador', 'Ontario',
+'Ontario', 'Ontario', 'British Columbia', 'Ontario', 'Nova Scotia',
+'Prince Edward Island', 'Saskatchewan', 'Newfoundland and Labrador',
+'Ontario', 'Ontario', 'Manitoba', 'British Columbia', 'Ontario',
+'Alberta', 'Saskatchewan', 'Ontario', 'Manitoba', 'Ontario', 'New
+Brunswick', 'Yukon', 'British Columbia', 'Yukon', 'Newfoundland and
+Labrador', 'Manitoba', 'Ontario', 'Yukon', 'British Columbia', 'Yukon',
+'Ontario', 'AB', 'Newfoundland and Labrador', 'Nova Scotia', 'Yukon',
+'Northwest Territories', 'Nunavut', 'Yukon', 'Nunavut', 'Ontario',
+'British Columbia', 'AB', 'Saskatchewan', 'Prince Edward Island',
+'Saskatchewan', 'Prince Edward Island', 'Alberta', 'Ontario',
+'Alberta', 'Manitoba', 'AB', 'British Columbia', 'Alberta']
+
+List of provinces after AB was changed to Alberta:
+['Alberta', 'Ontario', 'Prince Edward Island', 'Ontario', 'Quebec',
+'Saskatchewan', 'Alberta', 'Nova Scotia', 'Alberta', 'Northwest
+Territories', 'Saskatchewan', 'Nunavut', 'Nova Scotia', 'Prince Edward
+Island', 'Alberta', 'Nova Scotia', 'Prince Edward Island',
+'Saskatchewan', 'Nova Scotia', 'Newfoundland and Labrador', 'Ontario',
+'Ontario', 'Ontario', 'British Columbia', 'Ontario', 'Nova Scotia',
+'Prince Edward Island', 'Saskatchewan', 'Newfoundland and Labrador',
+'Ontario', 'Ontario', 'Manitoba', 'British Columbia', 'Ontario',
+'Alberta', 'Saskatchewan', 'Ontario', 'Manitoba', 'Ontario', 'New
+Brunswick', 'Yukon', 'British Columbia', 'Yukon', 'Newfoundland and
+Labrador', 'Manitoba', 'Ontario', 'Yukon', 'British Columbia', 'Yukon',
+'Ontario', 'Alberta', 'Newfoundland and Labrador', 'Nova Scotia',
+'Yukon', 'Northwest Territories', 'Nunavut', 'Yukon', 'Nunavut',
+'Ontario', 'British Columbia', 'Alberta', 'Saskatchewan', 'Prince
+Edward Island', 'Saskatchewan', 'Prince Edward Island', 'Alberta',
+'Ontario', 'Alberta', 'Manitoba', 'Alberta', 'British Columbia',
+'Alberta']
+
+List filtered to Alberta only:
+['Alberta', 'Alberta', 'Alberta', 'Alberta', 'Alberta', 'Alberta',
+'Alberta', 'Alberta', 'Alberta', 'Alberta', 'Alberta']
+
+Alberta occurs 11 times in the modified list.</pre>
+
+    <h2 id="sort_list">Example - Sorting a Compound List<span class="copy" title="Copy URL to the clipboard">¶</span></h2>
+    <p>Python includes a built-in higher-order function named
+    <code>sorted</code> that accepts a list as an argument and returns a
+    new sorted list. Calling the <code>sorted</code> function is
+    straightforward for a simple list such as a list of strings or a
+    list of numbers as shown in example&nbsp;6 and its output.</p>
+
+<div class="pre" id="ex6"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 6</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-comment"># Create a list that contains country names and print the list.</span>
+    countries = [<span class="hljs-string">"Canada"</span>, <span class="hljs-string">"France"</span>, <span class="hljs-string">"Ghana"</span>, <span class="hljs-string">"Brazil"</span>, <span class="hljs-string">"Japan"</span>]
+    <span class="hljs-built_in">print</span>(countries)
+
+    <span class="hljs-comment"># Sort the list. Then print the sorted list.</span>
+    sorted_list = <span class="hljs-built_in">sorted</span>(countries)
+    <span class="hljs-built_in">print</span>(sorted_list)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex6" title="Terminal Window" style="width: 714.703px;">&gt; python countries.py
+['Mexico', 'France', 'Ghana', 'Brazil', 'Japan']
+['Brazil', 'France', 'Ghana', 'Japan', 'Mexico']</pre>
+
+    <p>A <dfn>compound list</dfn> is a list that contains lists. Sorting
+    a compound list is more complex than sorting a simple list. Consider
+    this compound list that contains data about some countries.</p>
+
+<div class="pre"><pre class="python hljs">    <span class="hljs-comment"># Create a list that contains data about countries.</span>
+    countries = [
+        <span class="hljs-comment"># [country_name, land_area, population, gdp_per_capita]</span>
+        [<span class="hljs-string">"Mexico"</span>, <span class="hljs-number">1972550</span>, <span class="hljs-number">126014024</span>, <span class="hljs-number">21362</span>],
+        [<span class="hljs-string">"France"</span>,  <span class="hljs-number">640679</span>,  <span class="hljs-number">67399000</span>, <span class="hljs-number">45454</span>],
+        [<span class="hljs-string">"Ghana"</span>,   <span class="hljs-number">239567</span>,  <span class="hljs-number">31072940</span>,  <span class="hljs-number">7343</span>],
+        [<span class="hljs-string">"Brazil"</span>, <span class="hljs-number">8515767</span>, <span class="hljs-number">210147125</span>, <span class="hljs-number">14563</span>],
+        [<span class="hljs-string">"Japan"</span>,   <span class="hljs-number">377975</span>, <span class="hljs-number">125480000</span>, <span class="hljs-number">41634</span>]
+    ]</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+    <p>Perhaps we want the <var>countries</var> compound list sorted by
+    country name or perhaps we want it sorted by population. The element
+    that we want a list sorted by is known as the <dfn>key
+    element</dfn>. If we want to use the <code>sorted</code> function to
+    sort a compound list, we must tell the <code>sorted</code> function
+    which element is the key element, which we do by passing a small
+    function as an argument into the <code>sorted</code> function. This
+    small function is called the <dfn>key function</dfn> and extracts
+    the key element from a list as shown in example&nbsp;7.</p>
+
+    <p>Notice at <span class="cross" data-ref="ex7" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;26</span>
+    in example&nbsp;7, there is a lambda function that extracts the
+    population from a country. Then at
+    <span class="cross" data-ref="ex7" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;29</span> that lambda
+    function is passed to the <code>sorted</code> function so that the
+    <code>sorted</code> function will sort the list of countries by the
+    population.</p>
+
+<div class="pre" id="ex7"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 7</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-comment"># Create a list that contains data about countries.</span>
+    countries = [
+        <span class="hljs-comment"># [country_name, land_area, population, gdp_per_capita]</span>
+        [<span class="hljs-string">"Mexico"</span>, <span class="hljs-number">1972550</span>, <span class="hljs-number">126014024</span>, <span class="hljs-number">21362</span>],
+        [<span class="hljs-string">"France"</span>,  <span class="hljs-number">640679</span>,  <span class="hljs-number">67399000</span>, <span class="hljs-number">45454</span>],
+        [<span class="hljs-string">"Ghana"</span>,   <span class="hljs-number">239567</span>,  <span class="hljs-number">31072940</span>,  <span class="hljs-number">7343</span>],
+        [<span class="hljs-string">"Brazil"</span>, <span class="hljs-number">8515767</span>, <span class="hljs-number">210147125</span>, <span class="hljs-number">14563</span>],
+        [<span class="hljs-string">"Japan"</span>,   <span class="hljs-number">377975</span>, <span class="hljs-number">125480000</span>, <span class="hljs-number">41634</span>]
+    ]
+
+    <span class="hljs-comment"># Print the unsorted list.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Original unsorted list of countries"</span>)
+    <span class="hljs-keyword">for</span> country <span class="hljs-keyword">in</span> countries:
+        <span class="hljs-built_in">print</span>(country)
+    <span class="hljs-built_in">print</span>()
+
+    <span class="hljs-comment"># Define a lambda function that will be used as the</span>
+    <span class="hljs-comment"># key function by the sorted function. The lambda</span>
+    <span class="hljs-comment"># function extracts the population data from a</span>
+    <span class="hljs-comment"># country so that the population will be used for</span>
+    <span class="hljs-comment"># sorting the list of countries.</span>
+    POPULATION_INDEX = <span class="hljs-number">2</span>
+    popul_func = <em><span class="hljs-keyword">lambda</span> country: country[POPULATION_INDEX]</em>
+
+    <span class="hljs-comment"># Sort the list of countries by the population.</span>
+    sorted_list = <span class="hljs-built_in">sorted</span>(countries, <em>key=popul_func</em>)
+
+    <span class="hljs-comment"># Print the sorted list.</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"List of countries sorted by population"</span>)
+    <span class="hljs-keyword">for</span> country <span class="hljs-keyword">in</span> sorted_list:
+        <span class="hljs-built_in">print</span>(country)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex7" title="Terminal Window" style="width: 674.609px;">&gt; python countries.py
+Original unsorted list of countries
+['Mexico', 1972550, 126014024, 21362]
+['France', 640679, 67399000, 45454]
+['Ghana', 239567, 31072940, 7343]
+['Brazil', 8515767, 210147125, 14563]
+['Japan', 377975, 125480000, 41634]
+
+List of countries sorted by population
+['Ghana', 239567, 31072940, 7343]
+['France', 640679, 67399000, 45454]
+['Japan', 377975, 125480000, 41634]
+['Mexico', 1972550, 126014024, 21362]
+['Brazil', 8515767, 210147125, 14563]</pre>
+
+    <p>By using a key function it’s possible to sort a compound list
+    with a key element that isn’t in the list. Consider the compound
+    list named <var>students</var> that contains data about various
+    students in example&nbsp;8. Within the list, each student’s
+    given name and surname are stored separately. It is common for a
+    user to want such a list to be sorted by surname and then by
+    given name. A simple way to do that is to write a key function
+    that combines the surname and given name elements and returns
+    the combined name as the key that the <code>sorted</code> function
+    will use for sorting.</p>
+
+    <p><span class="cross" data-ref="ex8" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">Lines&nbsp;21–22</span>
+    in example&nbsp;8 contain a <code>lambda</code> function that
+    combines a student’s surname and given name into a string that is
+    used as the key by the sorted function at
+    <span class="cross" data-ref="ex8" title="Move mouse over to turn highlights on.
+Click to keep highlights on.">line&nbsp;25</span>. Notice in
+    the output from example&nbsp;8 that the students are sorted by
+    surname and then by given name.</p>
+
+<div class="pre" id="ex8"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+</pre>
+<pre class="python hljs"><span class="hljs-comment"># Example 8</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-comment"># Create a list that contains data about young students.</span>
+    students = [
+        <span class="hljs-comment"># [given_name, surname, reading_level]</span>
+        [<span class="hljs-string">"Robert"</span>, <span class="hljs-string">"Smith"</span>, <span class="hljs-number">6.7</span>],
+        [<span class="hljs-string">"Annie"</span>, <span class="hljs-string">"Smith"</span>, <span class="hljs-number">6.2</span>],
+        [<span class="hljs-string">"Robert"</span>, <span class="hljs-string">"Lopez"</span>, <span class="hljs-number">7.1</span>],
+        [<span class="hljs-string">"Sean"</span>, <span class="hljs-string">"Li"</span>, <span class="hljs-number">5.6</span>],
+        [<span class="hljs-string">"Sofia"</span>, <span class="hljs-string">"Lopez"</span>, <span class="hljs-number">5.3</span>],
+        [<span class="hljs-string">"Lily"</span>, <span class="hljs-string">"Harris"</span>, <span class="hljs-number">6.7</span>],
+        [<span class="hljs-string">"Alex"</span>, <span class="hljs-string">"Harris"</span>, <span class="hljs-number">5.8</span>]
+    ]
+
+    GIVEN_INDEX = <span class="hljs-number">0</span>
+    SURNAME_INDEX = <span class="hljs-number">1</span>
+
+    <span class="hljs-comment"># Define a lambda function that combines</span>
+    <span class="hljs-comment"># a student's surname and given name.</span>
+    combine_names = <em><span class="hljs-keyword">lambda</span> student_list: \
+        <span class="hljs-string">f"<span class="hljs-subst">{student_list[SURNAME_INDEX]}</span>, <span class="hljs-subst">{student_list[GIVEN_INDEX]}</span>"</span></em>
+
+    <span class="hljs-comment"># Sort the list by the combined key of surname, given_name.</span>
+    sorted_list = <span class="hljs-built_in">sorted</span>(students, <em>key=combine_names</em>)
+
+    <span class="hljs-comment"># Print the list.</span>
+    <span class="hljs-keyword">for</span> student <span class="hljs-keyword">in</span> sorted_list:
+        <span class="hljs-built_in">print</span>(student)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button type="button" title="Copy code to the clipboard" class="copy"><img src="./CSE 111 - Prepare_files/copy.png" alt="Copy code to the clipboard"></button></div>
+
+<pre class="console" data-for="ex8" title="Terminal Window" style="width: 734.797px;">&gt; python students.py
+['Alex', 'Harris', 5.8]
+['Lily', 'Harris', 6.7]
+['Sean', 'Li', 5.6]
+['Robert', 'Lopez', 7.1]
+['Sofia', 'Lopez', 5.3]
+['Annie', 'Smith', 6.2]
+['Robert', 'Smith', 6.7]</pre>
+
+    <h2 id="videos">Videos<span class="copy" title="Copy URL to the clipboard">¶</span></h2>
+    <p>If you wish to learn more about functional programming in Python,
+    watch these videos by Dan Bader.</p>
+
+    <ul class="videos">
+        <li><div>The <a href="https://youtu.be/xJCPpDlk9_w">Basics of Functional Programming</a> in Python <span class="duration">(19 minutes)</span></div></li>
+
+        <li><div>The Python <a href="https://youtu.be/fkjjqyfN51c"><code>filter</code> function</a> <span class="duration">(16 minutes)</span></div></li>
+
+        <li><div>The Python <a href="https://youtu.be/powVeMYKCSw"><code>map</code> function</a> <span class="duration">(14 minutes)</span></div></li>
+
+        <li><div>The Python <a href="https://youtu.be/ZrZ6vJGiE8I"><code>reduce</code> function</a> <span class="duration">(18 minutes)</span></div></li>
+    </ul>
+
+    <h2 id="docs">Additional Documentation<span class="copy" title="Copy URL to the clipboard">¶</span></h2>
+    <p>If you wish to learn even more details about functional
+    programming, the following articles contain reference documentation
+    for functional programming in Python.</p>
+
+    <ul class="mixed">
+        <li class="reference"><div>Python <a href="https://docs.python.org/3/library/functions.html#map"><code>map</code> function</a></div></li>
+        <li class="reference"><div>Python <a href="https://docs.python.org/3/library/functions.html#filter"><code>filter</code> function</a></div></li>
+        <li class="reference"><div>Python <a href="https://docs.python.org/3/library/functools.html#functools.reduce"><code>reduce</code> function</a></div></li>
+        <li class="reference"><div>Python <a href="https://docs.python.org/3/library/functools.html"><code>functools</code> module</a></div></li>
+        <li class="tutorial"><div>A thorough tutorial about <a href="https://realpython.com/python-lambda/">lambda functions</a></div></li>
+    </ul>
+
+    <h2 id="summary">Summary<span class="copy" title="Copy URL to the clipboard">¶</span></h2>
+    <p>In this prepare content, you learned that functional
+    programming is a programming paradigm that focuses on functions,
+    and you learned these three concepts that are used in functional
+    programming:</p>
+
+    <ol>
+        <li><div>You can pass a function as an argument into another
+        function.</div></li>
+        <li><div>A nested function is a function defined inside another
+        function.</div></li>
+        <li><div>A lambda function is a small anonymous
+        function.</div></li>
+    </ol>
+</article>
+
+
+<footer>Copyright © 2020–2022, <a title="BYU-Idaho Website" href="https://www.byui.edu/">Brigham Young University - Idaho</a>. All rights reserved.</footer></body></html>

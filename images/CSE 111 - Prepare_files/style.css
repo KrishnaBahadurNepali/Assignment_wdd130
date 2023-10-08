@@ -1,0 +1,970 @@
+@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+@font-face {
+	font-family: 'icomoon';
+	src: url('fonts/icomoon.eot');
+	src: url('fonts/icomoon.eot#iefix-8k8p81') format('embedded-opentype'),
+		url('fonts/icomoon.ttf') format('truetype'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	--transpar: rgba(0, 0, 0, 0);
+
+	--lighter-yellow: rgba(255, 236, 211, 1);
+	--yellow: rgba(255, 179, 80, 1);
+	--darker-yellow: rgba(77, 54, 24, 1);
+
+	--lightest-coral: rgba(255, 245, 241, 1);
+	--lighter-coral: rgba(255, 223, 211, 1);
+	--coral: rgba(255, 127, 80, 1);
+	--darker-coral: rgba(64, 32, 20, 1);
+	--darkest-coral: rgba(36, 16, 10, 1);
+
+	--lighter-raspberry: rgba(248, 209, 221, 1);
+	--raspberry: rgba(226, 71, 121, 1);
+	--darker-raspberry: rgba(57, 18, 30, 1);
+
+	--light-green: rgba(127, 255, 127, 1);
+	--dark-green: rgba(37, 76, 37, 1);
+
+	--lightest-byui-blue: rgba(235, 244, 249, 1);
+	--byui-blue: rgba(0, 118, 182, 1);
+	--darkest-byui-blue: rgba(0, 24, 36, 1);
+
+	--light-bk-color: rgba(255, 255, 255, 1);
+	--light-fg-color: rgba(4, 4, 4, 1);
+
+	--dark-bk-color: rgba(0, 0, 0, 1);
+	--dark-fg-color: rgba(184, 184, 184, 1);
+
+	--border-color: rgba(112, 112, 112, 1);
+
+	--compare-same-color: var(--lighter-yellow);
+	--compare-similar-color: var(--lighter-coral);
+	--compare-diff-color: var(--lighter-raspberry);
+}
+@media screen {
+	:root {
+		--bk-color: var(--light-bk-color);
+		--fg-color: var(--light-fg-color);
+
+		--heading-fg-color: var(--byui-blue);
+		--bullet-fg-color: var(--byui-blue);
+
+		--dfn-fg-color: var(--coral);
+		--strong-fg-color: var(--coral);
+		--user-input-bk-color: var(--coral);
+		--user-input-fg-color: white;
+
+		--line-number-hilite: var(--byui-blue);
+		--python-bk-color: var(--lightest-coral);
+		--console-bk-color: var(--lightest-byui-blue);
+
+		--link-before-fg-color: var(--byui-blue);
+		--link-hover-fg-color: var(--coral);
+		--link-active-fg-color: red;
+		--link-visited-fg-color: purple;
+
+		--body-font-size: 110%;
+		--formula-font-size: 118%;
+	}
+}
+@media print {
+	:root {
+		--bk-color: white;
+		--fg-color: black;
+
+		--heading-fg-color: black;
+		--bullet-fg-color: darkgray;
+
+		--dfn-fg-color: black;
+		--strong-fg-color: black;
+		--user-input-bk-color: white;
+		--user-input-fg-color: darkgray;
+
+		--python-bk-color: white;
+		--console-bk-color: white;
+
+		--link-before-fg-color: var(--byui-blue);
+		--link-hover-fg-color: var(--byui-blue);
+		--link-active-fg-color: var(--byui-blue);
+		--link-visited-fg-color: var(--byui-blue);
+
+		--body-font-size: 110%;
+		--formula-font-size: 105%;
+	}
+}
+
+body {
+	background-color: var(--bk-color);
+	color: var(--fg-color);
+	font-size: var(--body-font-size);
+}
+@media screen {
+	body {
+		font-family: "Open Sans", Arial, Helvetica, Verdana, sans-serif;
+	}
+	body.dark {
+		--bk-color: var(--dark-bk-color);
+		--fg-color: var(--dark-fg-color);
+
+		--python-bk-color: var(--darkest-coral);
+		--console-bk-color: var(--darkest-byui-blue);
+
+		--compare-same-color: var(--darker-yellow);
+		--compare-similar-color: var(--darker-coral);
+		--compare-diff-color: var(--darker-raspberry);
+	}
+}
+@media print {
+	body {
+		font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
+		max-width: 6.5in;
+	}
+}
+
+
+@media screen {
+	header {
+		display: flex;
+		align-items: center;
+		padding: 0.5em 1.5em;
+		background-color: var(--byui-blue);
+		color: white;
+	}
+	header > a.byuiLogo {
+		flex: 0 0 auto;
+		font-family: 'icomoon';
+		font-size: 400%;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 0.6;
+		margin-right: 0.4em;
+		vertical-align: middle;
+		/* Better font rendering */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	header > h2 {
+		flex: 1 1 auto;
+		vertical-align: middle;
+		font-size: 125%;
+		font-weight: normal;
+		white-space: normal;
+	}
+	header > h2 > a,
+	header > h2 > span {
+		white-space: nowrap;
+	}
+	header > img.menuIcon {
+		flex: 0 0 auto;
+		width: 1.2em;
+		cursor: pointer;
+		margin: auto 0 auto 1.5em;
+	}
+
+	nav.menu {
+		position: absolute;
+		right: 0;
+		z-index: 1;
+		border: 1px solid white;
+		padding-top: 0.5em;
+		background-color: var(--byui-blue);
+		color: white;
+	}
+	nav.menu.closed {
+		display: none;
+	}
+	nav.menu li {
+		padding: 0 1em 0.5em 1em;
+		cursor: pointer;
+	}
+	nav.menu li:hover {
+		font-weight: 900;
+	}
+	nav.menu li.first {
+		border-top: 1px solid white;
+		padding-top: 0.5em;
+	}
+	nav.menu li.dark,
+	body.dark nav.menu li.light {
+		display: block;
+	}
+	nav.menu li.light,
+	body.dark nav.menu li.dark {
+		display: none;
+	}
+	nav.menu a {
+		/* Force the a tags to occupy the entire
+		 * width of the navigation list item. */
+		display: block;
+		width: 100%;
+	}
+	nav.menu img {
+		width: 1em;
+		vertical-align: middle;
+		margin-right: 0.5em;
+	}
+
+	header a:link,
+	header a:hover,
+	header a:active,
+	header a:visited,
+	nav.menu a:link,
+	nav.menu a:hover,
+	nav.menu a:active,
+	nav.menu a:visited {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+@media print {
+	header { display: none; }
+	nav.menu { display: none; }
+}
+
+
+/** Paragraph classes that are used by combined/title.html which
+ * is a title page that is used when the content for this course
+ * is printed. */
+section p.courseCode {
+	margin: 6em 0 0 0;
+	font-size: 180%;
+	text-align: center;
+}
+section p.courseTitle {
+	margin: 0.5em 0 0 0;
+	color: var(--heading-fg-color);
+	font-size: 220%;
+	font-weight: bold;
+	text-align: center;
+}
+section p.author {
+	margin: 18em 0 0 0;
+	font-size: 130%;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+@media screen {
+	article {
+		line-height: 1.4;
+		max-width: 40em;
+		margin: 0.5em auto 1em auto;
+		padding: 0 1em;
+	}
+
+	/* article.solution is used by overview/solution.html, which
+	 * shows sample solutions for checkpoints and team activities. */
+	article.solution {
+		max-width: none;
+	}
+	article.solution h1 {
+		font-size: 150%;
+	}
+}
+@media print {
+	article {
+		line-height: 1.15;
+	}
+	section {
+		page-break-before: always !important;
+		widows: 2;
+		orphans: 2;
+	}
+}
+
+article h1 {
+	text-align: center;
+	font-size: 175%;
+	margin: 0 0 1em 0;
+	page-break-after: avoid !important;
+}
+
+article h2 {
+	clear: both;
+	font-size: 150%;
+	font-weight: bold;
+	margin: 1.5em 0 0.25em 0;
+	padding-bottom: 0.25em;
+	border-bottom: 1px solid;
+	page-break-after: avoid !important;
+}
+
+article h3 {
+	font-weight: bold;
+	font-size: 130%;
+	color: var(--heading-fg-color);
+	margin: 1.5em 0 0.5em 0;
+	page-break-after: avoid !important;
+}
+
+article h4 {
+	font-weight: bold;
+	font-size: 110%;
+	margin: 1em 0 0.5em 0;
+	page-break-after: avoid !important;
+}
+
+@media screen {
+	article h2 > span.copy,
+	article h3 > span.copy,
+	article h4 > span.copy {
+		font-size: smaller;
+		color: var(--dfn-fg-color);
+		margin: 0 0 0 0.5em;
+		cursor: pointer;
+		visibility: hidden;
+	}
+
+	article h2:hover > span.copy,
+	article h3:hover > span.copy,
+	article h4:hover > span.copy {
+		visibility: visible;
+	}
+
+	article h2 > span.copy:hover,
+	article h3 > span.copy:hover,
+	article h4 > span.copy:hover {
+		background-color: var(--console-bk-color);
+		font-weight: 900;
+	}
+}
+@media print {
+	article h2 > span.copy,
+	article h3 > span.copy,
+	article h4 > span.copy {
+		display: none;
+	}
+	article iframe.video {
+		display: none;
+	}
+}
+
+/* As of November 2021, Chrome doesn't honor "page-break-after: avoid",
+ * so changing "-after" to "-inside" plus the following code is a work
+ * around.
+article h1::after,
+article h2::after,
+article h3::after,
+article h4::after {
+    content: " ";
+    display: block;
+    height: 100px;
+    margin-bottom: -100px;
+} */
+
+article p,
+article div.p,
+article iframe,
+article form {
+	margin: 1em 0;
+}
+
+article blockquote {
+	margin: 1em 1em;
+	border-left: 0.12em solid var(--bullet-fg-color);
+	padding-left: 0.5em;
+}
+
+article div.search {
+	margin: 1em auto;
+	border: 1px solid var(--border-color);
+	padding: 0.25em 0.5em;
+	white-space: pre-line;
+}
+
+
+article a:link { color: var(--link-before-fg-color); }
+article a:hover { color: var(--link-hover-fg-color); }
+article a:active { color: var(--link-active-fg-color); }
+article a:visited { color: var(--link-visited-fg-color); }
+
+article dfn {
+	color: var(--dfn-fg-color)
+}
+@media print {
+	article dfn {
+		font-weight: bold;
+	}
+}
+
+article b {
+	font-weight: bold;
+}
+article em {
+	font-style: italic;
+}
+article strong {
+	font-weight: bold;
+	font-style: italic;
+	color: var(--strong-fg-color);
+}
+article var {
+	font-style: italic;
+}
+
+article span.duration {
+	font-size: smaller;
+	white-space: nowrap;
+}
+article span.nowrap {
+	white-space: nowrap;
+}
+
+input[type="text"],
+button {
+	font-size: inherit;
+}
+
+article details {
+	margin-bottom: 1em;
+}
+
+
+/* Lists */
+article ol {
+	margin: 0 0 1em 2em;
+	list-style-type: decimal;
+}
+
+article ol > li ol > li ol {
+	list-style-type: lower-roman;
+}
+
+article ol > li ol {
+	list-style-type: lower-alpha;
+}
+
+article ol.long > li {
+	margin-bottom: 1em;
+}
+
+article li {
+	color: var(--bullet-fg-color);
+}
+
+article li > div {
+	color: var(--fg-color);
+	margin-left: 0.25em;
+}
+
+article ul {
+	margin: 0 0 1em 2em;
+	list-style-type: disc;
+}
+
+article ul.long > li {
+	margin-bottom: 1em;
+}
+
+article li ul {
+	list-style-type: circle;
+}
+
+article ul.links {
+	list-style-type: "»";
+}
+
+article ul.links > li {
+	padding-left: 0.3em;
+}
+
+article ul.references,
+article ul.tutorials,
+article ul.videos,
+article ul.mixed {
+	list-style-type: none;
+	margin-left: 1.5em;
+}
+
+article ul.references > li,
+article ul.mixed > li.reference {
+	background-image: url("icons/reference.png");
+	background-repeat: no-repeat;
+	min-height: 30px;
+	padding-left: 22px;
+}
+
+article ul.tutorials > li,
+article ul.mixed > li.tutorial {
+	background-image: url("icons/tutorial.png");
+	background-repeat: no-repeat;
+	min-height: 30px;
+	padding-left: 22px;
+}
+
+article ul.videos > li,
+article ul.mixed > li.video {
+	background-image: url("icons/video.png");
+	background-repeat: no-repeat;
+	min-height: 30px;
+	padding-left: 34px;
+}
+
+article ul.notes {
+	list-style-type: "*";
+}
+
+article ul.notes > li {
+	padding-left: 0.4em;
+	color: var(--bullet-fg-color);
+}
+
+article dl.function {
+	margin: 1em;
+}
+
+article dl.function dt {
+	border-left: 0.12em solid var(--bullet-fg-color);
+	padding-left: 0.5em;
+}
+
+article dl.function dd {
+	border-left: 0.12em solid var(--bullet-fg-color);
+	padding-left: 2.5em;
+	margin-bottom: 1em;
+}
+
+article dl.long dt {
+	padding-bottom: 1em;
+}
+
+article dl.long dd {
+	margin-bottom: 2em;
+}
+
+
+/* Mathematical Formulas */
+article div.formula {
+	white-space: nowrap;
+	font-family: "Palatino Linotype", Palatino, Garamond, serif;
+	font-size: var(--formula-font-size);
+	page-break-inside: avoid !important;
+}
+
+article div.inline.formula {
+	display: inline-block;
+	margin: 0 0.5em;
+	vertical-align: baseline;
+}
+
+article div.block.formula {
+	margin: 1em 0;
+	vertical-align: middle;
+	text-align: center;
+}
+
+article div.group {
+	display: table;
+	margin: 0 auto;
+}
+article div.group > div.formula {
+	margin: 1em 0;
+	vertical-align: middle;
+}
+
+article div.formula div {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+}
+
+article div.formula .baseline {
+	vertical-align: baseline;
+}
+
+article div.formula sup,
+article div.formula sub {
+	margin-left: 0.12em;
+}
+
+article div.formula div.supsub {
+	font-size: smaller;
+	margin-left: 0.12em;
+	line-height: 0.8;
+	vertical-align: -0.35em;
+	text-align: left;
+}
+
+article div.formula span.abs::before,
+article div.formula span.abs::after {
+	font-size: 140%;
+	font-weight: 100;
+	vertical-align: middle;
+	content: "\7c";
+}
+
+article div.formula .paren::before {
+	display: inline-block;  /* Required so that transform will work */
+	padding-left: 0.1em;
+	content: "\28";
+	font-weight: 100;
+	transform: scale(1.2, 1.2);
+}
+
+article div.formula .paren::after {
+	display: inline-block;  /* Required so that transform will work */
+	padding-left: 0.1em;
+	content: "\29";
+	font-weight: 100;
+	transform: scale(1.2, 1.2);
+}
+
+article div.formula .paren.onePlus::before {
+	padding-left: 0.2em;
+	padding-right: 0.1em;
+	transform: scale(1.5, 1.8);
+}
+article div.formula .paren.onePlus::after {
+	padding-left: 0.1em;
+	padding-right: 0.2em;
+	transform: scale(1.5, 1.8);
+}
+
+article div.formula div.paren {
+	vertical-align: baseline;
+}
+
+article div.formula div.radic {
+}
+
+article div.formula div.radic.one > div:first-child {
+	margin-right: -0.25em;
+}
+
+article div.formula div.radic.onePlus > div:first-child {
+	transform: scale(1.1, 1.6);
+}
+
+article div.formula div.radic.two > div:first-child {
+	transform: scale(1.8, 3);
+	margin-right: 0.2em;
+}
+
+article div.formula div.radic > div:last-child {
+	border-top: 1px solid;
+	padding: 0 0.2em;
+}
+
+article div.formula div.sum > div > span {
+	display: block;
+}
+
+article div.formula div.sum > div > span.index {
+	font-size: smaller;
+}
+
+article div.formula div.sum > div > span.one {
+	margin: -0.3em 0 -0.2em 0;
+	font-size: 110%;
+}
+
+article div.formula div.sum > div > span.onePlus {
+	margin: -0.3em 0 -0.2em 0;
+	font-size: 130%;
+}
+
+article div.formula div.sum > div > span.two {
+	margin: 0.3em 0 1em 0;
+	transform: scale(2.5, 3.2); /* W3C */
+}
+
+article div.formula div.sum > div:last-child {
+	vertical-align: -1.2em;
+}
+
+article div.formula div.fract {
+}
+
+article div.formula div.fract > div:first-child {
+	display: block;
+}
+
+article div.formula div.fract > div:last-child {
+	display: block;
+	margin-top: 0.25em;
+	border-top: 1px solid;
+	padding-top: 0.1em;
+}
+
+
+/* Figures */
+article figure {
+	page-break-inside: avoid !important;
+	margin: 0 0 1em 0;
+}
+
+article figure.full {
+	margin: 0 0 1em 0;
+}
+
+article figure.code {
+	margin: 0 auto 1em 1.5em;
+}
+
+article figure.center {
+	display: table;
+	margin: 0 auto 1em auto;
+}
+
+article figure.right {
+	float: right;
+	margin: 0 0 1em 1em;
+}
+
+article figure.list {
+	border: 1px solid var(--border-color);
+}
+
+article figure > img {
+	max-width: 100%;
+}
+article figure.code > img {
+	border: 1px solid var(--border-color);
+	/* Instead of --python-bk-color, we must use --lightest-coral for
+	 * figures with code in them, because the figure foreground
+	 * colors will not change if the reader switches to dark mode. */
+	background-color: var(--lightest-coral);
+}
+article figure.callgraph > img {
+	border: 1px solid var(--border-color);
+}
+
+article figure > figcaption {
+	font-size: 90%;
+	text-align: left;
+	margin: 0 0 1em 0;
+}
+
+
+/* Cross reference link for line numbers in example code. */
+article span.cross {
+	cursor: pointer;
+	text-decoration: underline var(--link-before-fg-color) dotted;
+}
+
+
+/* Code containers */
+article code {
+	font-family: "Source Code Pro", "Lucida Console", Consolas, monospace;
+	white-space: nowrap;
+}
+
+
+article pre {
+	font-family: "Source Code Pro", "Lucida Console", Consolas, monospace;
+	line-height: 1.15;
+}
+@media screen {
+	article code,
+	article pre {
+		font-size: 95%;
+	}
+}
+@media print {
+	article code {
+		font-size: 78%;
+	}
+	article pre {
+		font-size: 75%;
+	}
+}
+
+article pre em,
+article code em {
+	font-weight: bold;
+	font-style: normal;
+}
+
+/* Container for console (terminal) input and output. */
+article pre.console {
+	margin: 1em 0 1em 1.25em;
+	border: 1px solid var(--border-color);
+	background-color: var(--console-bk-color);
+	padding: 0.25em 0.5em;
+	page-break-inside: avoid !important;
+}
+
+article pre.console span.input {
+	border: 1px solid var(--border-color);
+	padding: 0 0.25em;
+	background-color: var(--user-input-bk-color);
+	color: var(--user-input-fg-color);
+}
+
+article pre.console span.pass {
+	color: green;
+}
+
+article pre.console span.fail {
+	color: red;
+}
+
+/* Containers for line numbers and Python source code */
+article div.pre {
+	display: table;
+	position: relative;
+	margin: 0 auto 1em 1.25em;
+	border: 1px solid var(--border-color);
+	background-color: var(--python-bk-color);
+	padding: 0.25em 0.5em;
+}
+article div.pre.solution {
+	margin: 1em 0;
+}
+
+@media screen {
+	article div.pre > button.copy {
+		position: absolute;
+		top: 0.5em;
+		right: 0.25em;
+		cursor: pointer;
+		visibility: hidden;
+		background-color: var(--light-bk-color);
+	}
+
+	article div.pre:hover > button.copy {
+		visibility: visible;
+	}
+
+	article div.pre > button.copy > img {
+		width: 2em;
+	}
+}
+@media print {
+	article div.pre > button.copy {
+		display: none;
+	}
+}
+
+article div.pre > pre {
+	display: table-cell;
+}
+
+article div.pre > pre.linenums {
+	padding-right: 1.25em;
+	text-align: right;
+	color: var(--border-color);
+}
+
+article div.pre > pre.linenums > .hi {
+	background-color: var(--line-number-hilite);
+	color: white;
+}
+
+article div.pre > pre.python {
+	min-width: 18em;
+}
+
+article pre.python span.hiScope  { background-color: yellow; }
+article pre.python span.hiVarDef { background-color: orange; }
+article pre.python span.hiVarUse { background-color: yellow; }
+article pre.python span.hiError  { background-color: red; }
+
+
+/* Tables */
+article table {
+	margin-bottom: 1em;
+}
+
+article table.center {
+	margin: 1em auto;
+}
+
+article table th,
+article table td {
+	padding: 0.1em 0.25em;
+}
+
+article table.long tbody th,
+article table.long tbody td {
+	padding-bottom: 1em;
+}
+
+article table td.center { text-align: center; }
+article table td.number { text-align: right; }
+
+article table > thead > tr > th {
+	vertical-align: bottom;
+	text-align: center;
+	font-weight: bold;
+}
+
+article table > tbody > tr > th {
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+}
+
+article table.contents tbody > tr > th {
+	font-weight: bold;
+	font-size: 120%;
+	color: var(--heading-fg-color);
+	padding: 1.5em 0 0.5em 0;
+}
+article table.contents tbody > tr > td { padding-top: 0.3em; }
+article table.contents tbody > tr > td:first-child { min-width: 10em; }
+
+article span.same,
+article table.compare tbody > tr.same > th {
+	background-color: var(--compare-same-color);
+}
+article span.similar,
+article table.compare tbody > tr.similar > th {
+	background-color: var(--compare-similar-color);
+}
+article span.diff,
+article table.compare tbody > tr.diff > th {
+	background-color: var(--compare-diff-color);
+}
+
+article table.prec > tbody > tr > td {
+    border: 1px solid var(--border-color);
+}
+article table.prec > tbody > tr > td.prec {
+    border: none;
+    text-align: center;
+}
+
+/* Figures that contain tables */
+article figure.list > table {
+	margin: 1em;
+}
+
+article figure.list > table > tbody > tr > td {
+	text-align: center;
+}
+
+article figure.list > table > tbody > tr.elems > td {
+	border: 1px solid var(--border-color);
+}
+
+article figure.list > table > tbody > tr > td.label {
+	border: none;
+	text-align: right;
+}
+
+
+@media screen {
+	footer {
+		margin: 0.5em auto 1em auto;
+		padding: 0 1em;
+		line-height: 1.15;
+		max-width: 40em;
+		font-size: 80%;
+	}
+}
+@media print {
+	footer { display: none; }
+}
